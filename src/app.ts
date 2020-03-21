@@ -10,5 +10,7 @@ server({
         { path: '/api/v1', module: loginRouter },
     ],
     privateRoutes: [
+        { path: '/api/v1', module: customerRouter },
+        { path: '/api/v1', module: favoriteProductRouter },
     ],
 });
