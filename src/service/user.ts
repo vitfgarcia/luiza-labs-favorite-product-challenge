@@ -11,7 +11,7 @@ export class UserService {
             const duplicateUser = err.message.includes('duplicate key');
 
             if (duplicateUser) {
-                throw new Message('Nome de usuário ja utilizado, tente outro');
+                throw new Message('Nome de usuário ja utilizado, tente outro').withStatus(400);
             }
 
             throw err;
