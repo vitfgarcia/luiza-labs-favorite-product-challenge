@@ -53,3 +53,19 @@ customerRouter.delete('/customer/:id', async (req: CustomRequest, res: Response,
         return next(err);
     }
 });
+
+customerRouter.put('/customer/:id/product/:productId', async (req: CustomRequest, res: Response, next: NextFunction) => {
+    try {
+        return res.sendStatus(200);
+    } catch (err) {
+        return next(err);
+    }
+});
+
+customerRouter.delete('/customer/:id/product/:productId', async (req: CustomRequest, res: Response, next: NextFunction) => {
+    try {
+        return res.sendStatus(200);
+    } catch (err) {
+        return next(err);
+    }
+});

@@ -13,7 +13,7 @@
     "test:mutation": "stryker run"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vitor Ferreira Garcia <vitfgarcia@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.19.0",
@@ -53,7 +53,7 @@
     "ts-loader": "6.2.1",
     "ts-node": "8.4.1",
     "tslib": "1.10.0",
-    "typescript": "3.7.5",
+    "typescript": "3.7.3",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.10.1",

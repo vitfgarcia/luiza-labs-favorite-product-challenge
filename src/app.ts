@@ -3,16 +3,14 @@ import './configuration/connection';
 
 
 import { server } from './helper';
-import { customerRouter, favoriteProductRouter, loginRouter } from './controller';
+import { customerRouter, authRouter } from './controller';
 
 server({
     port: 3000,
     publicRoutes: [
-        { path: '/', module: loginRouter },
-
+        { path: '/', module: authRouter },
     ],
     privateRoutes: [
         { path: '/', module: customerRouter },
-        { path: '/', module: favoriteProductRouter },
     ],
 });

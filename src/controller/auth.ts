@@ -7,9 +7,9 @@ import {
 
 import { UserService, LoginService } from '../service';
 
-export const loginRouter = Router({ mergeParams: true });
+export const authRouter = Router({ mergeParams: true });
 
-loginRouter.post('/register', async (req: Request, res: Response, next: NextFunction) => {
+authRouter.post('/register', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const message = await UserService.create(req.body);
         return res.status(201).json({ message });
@@ -18,7 +18,7 @@ loginRouter.post('/register', async (req: Request, res: Response, next: NextFunc
     }
 });
 
-loginRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+authRouter.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const response = await LoginService.login(req.body);
         return res.status(200).json(response);
@@ -27,7 +27,7 @@ loginRouter.post('/login', async (req: Request, res: Response, next: NextFunctio
     }
 });
 
-loginRouter.post('/refresh-token', async (req: Request, res: Response, next: NextFunction) => {
+authRouter.post('/refresh-token', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.headers['authorization'];
         const response = await LoginService.refreshToken(token);
