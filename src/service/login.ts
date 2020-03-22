@@ -29,7 +29,7 @@ export class LoginService {
     }
 
     public static async refreshToken(token: string): Promise<LoginResponse> {
-        const user = await this.decodeToken(token);
+        const user = await LoginService.decodeToken(token);
         const newAccessToken = LoginService.generateToken(user, LoginService.expiresIn);
 
         return {
@@ -44,16 +44,11 @@ export class LoginService {
         const isTokenValid = token && token.startsWith('Bearer ');
 
         if (!isTokenValid) {
-            throw new Message('Unauthorized').withStatus(401);
+            throw new Message('Invalid Token').withStatus(400);
         }
         const cleanToken = token.substring(7, token.length);
-        const payload: Partial<User> = jwt.verify(cleanToken, secret);
 
-        if (!payload) {
-            throw new Message('Unauthorized').withStatus(401);
-        }
-
-        const { id } = payload;
+        const { id }: Partial<User> = jwt.verify(cleanToken, secret);
         const user = await UserRepository.findOne({ id });
 
         if (!user) {

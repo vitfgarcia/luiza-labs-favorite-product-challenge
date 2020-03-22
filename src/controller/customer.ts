@@ -5,12 +5,14 @@ import {
 } from 'express';
 
 import { CustomRequest } from '../interfaces';
+import { CustomerService } from '../service/customer';
 
 export const customerRouter = Router({ mergeParams: true });
 
 customerRouter.get('/customer', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const response = CustomerService.getAll();
+        return res.status(200).json(response);
     } catch (err) {
         return next(err);
     }
@@ -18,7 +20,8 @@ customerRouter.get('/customer', async (req: CustomRequest, res: Response, next: 
 
 customerRouter.get('/customer/:id', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const response = CustomerService.getById(req.params.id);
+        return res.status(200).json(response);
     } catch (err) {
         return next(err);
     }
@@ -26,7 +29,8 @@ customerRouter.get('/customer/:id', async (req: CustomRequest, res: Response, ne
 
 customerRouter.post('/customer', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const response = CustomerService.create(req.body);
+        return res.status(201).json(response);
     } catch (err) {
         return next(err);
     }
@@ -34,7 +38,8 @@ customerRouter.post('/customer', async (req: CustomRequest, res: Response, next:
 
 customerRouter.put('/customer/:id', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const response = CustomerService.update(req.params.id, req.body);
+        return res.status(200).json(response);
     } catch (err) {
         return next(err);
     }
@@ -42,7 +47,8 @@ customerRouter.put('/customer/:id', async (req: CustomRequest, res: Response, ne
 
 customerRouter.delete('/customer/:id', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        await CustomerService.delete(req.params.id);
+        return res.sendStatus(204);
     } catch (err) {
         return next(err);
     }

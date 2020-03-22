@@ -1,9 +1,9 @@
-import { Schema, SchemaDefinition, model } from 'mongoose';
-import { Product } from '../entity';
+import { Schema, SchemaDefinition } from 'mongoose';
 
 const definition: SchemaDefinition = {
     id: {
         type: String,
+        unique: true,
     },
     price: {
         type: Number,
@@ -23,4 +23,3 @@ const definition: SchemaDefinition = {
 };
 
 export const ProductSchema = new Schema(definition);
-export const ProductModel = model<Product>('Product', ProductSchema);

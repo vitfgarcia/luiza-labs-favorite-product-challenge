@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParse from 'body-parser';
+import * as health from 'express-healthcheck';
 
 import { ServerConfig } from '../interfaces';
 import {
@@ -13,6 +14,9 @@ export function server(config: ServerConfig): void {
     const { port, publicRoutes, privateRoutes } = config;
 
     const app = express();
+
+    app.use('/health', health());
+
     app.use(bodyParse.json());
 
     app.use(logger);

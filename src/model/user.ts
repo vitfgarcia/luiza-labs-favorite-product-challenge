@@ -6,6 +6,7 @@ const definition: SchemaDefinition = {
     id: {
         type: String,
         default: uuid,
+        unique: true,
     },
     username: {
         type: String,
