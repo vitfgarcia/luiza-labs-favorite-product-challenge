@@ -5,7 +5,7 @@ import {
 } from 'express';
 
 import { CustomRequest } from '../interfaces';
-import { CustomerService } from '../service/customer';
+import { CustomerService } from '../service';
 
 export const customerRouter = Router({ mergeParams: true });
 

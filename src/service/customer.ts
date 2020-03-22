@@ -1,5 +1,5 @@
 import { Customer } from '../entity';
-import { CustomerRepository } from '../repository/customer';
+import { CustomerRepository } from '../repository';
 
 export class CustomerService {
     public static async getAll(): Promise<Customer[]> {
