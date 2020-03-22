@@ -8,11 +8,11 @@ import { customerRouter, favoriteProductRouter, loginRouter } from './controller
 server({
     port: 3000,
     publicRoutes: [
-        { path: '/api/v1', module: loginRouter },
+        { path: '/', module: loginRouter },
 
     ],
     privateRoutes: [
-        { path: '/api/v1', module: customerRouter },
-        { path: '/api/v1', module: favoriteProductRouter },
+        { path: '/', module: customerRouter },
+        { path: '/', module: favoriteProductRouter },
     ],
 });
