@@ -11,7 +11,7 @@ export const customerRouter = Router({ mergeParams: true });
 
 customerRouter.get('/customer', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const response = CustomerService.getAll();
+        const response = await CustomerService.getAll();
         return res.status(200).json(response);
     } catch (err) {
         return next(err);
@@ -20,7 +20,7 @@ customerRouter.get('/customer', async (req: CustomRequest, res: Response, next: 
 
 customerRouter.get('/customer/:id', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const response = CustomerService.getById(req.params.id);
+        const response = await CustomerService.getById(req.params.id);
         return res.status(200).json(response);
     } catch (err) {
         return next(err);
@@ -29,7 +29,7 @@ customerRouter.get('/customer/:id', async (req: CustomRequest, res: Response, ne
 
 customerRouter.post('/customer', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const response = CustomerService.create(req.body);
+        const response = await CustomerService.create(req.body);
         return res.status(201).json(response);
     } catch (err) {
         return next(err);
@@ -38,7 +38,7 @@ customerRouter.post('/customer', async (req: CustomRequest, res: Response, next:
 
 customerRouter.put('/customer/:id', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const response = CustomerService.update(req.params.id, req.body);
+        const response = await CustomerService.update(req.params.id, req.body);
         return res.status(200).json(response);
     } catch (err) {
         return next(err);
@@ -56,7 +56,9 @@ customerRouter.delete('/customer/:id', async (req: CustomRequest, res: Response,
 
 customerRouter.put('/customer/:id/product/:productId', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const { id, productId } = req.params;
+        const response = await CustomerService.addFavoriteProduct(id, productId);
+        return res.status(200).json(response);
     } catch (err) {
         return next(err);
     }
@@ -64,7 +66,9 @@ customerRouter.put('/customer/:id/product/:productId', async (req: CustomRequest
 
 customerRouter.delete('/customer/:id/product/:productId', async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        return res.sendStatus(200);
+        const { id, productId } = req.params;
+        const response = await CustomerService.removeFavoriteProduct(id, productId);
+        return res.status(200).json(response);
     } catch (err) {
         return next(err);
     }

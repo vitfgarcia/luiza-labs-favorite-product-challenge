@@ -3,11 +3,12 @@ import { Customer } from '../entity';
 
 export class CustomerRepository {
     public static async getAll(): Promise<Customer[]> {
-        return CustomerModel.find({});
+        return CustomerModel
+            .find({}, '-_id');
     }
 
     public static async getById(id: string): Promise<Customer> {
-        return CustomerModel.findById(id);
+        return CustomerModel.findOne({ id }, '-_id');
     }
 
     public static async create(customer: Customer): Promise<Customer> {
@@ -15,10 +16,10 @@ export class CustomerRepository {
     }
 
     public static async update(id: string, customer: Customer): Promise<Customer> {
-        return CustomerModel.findByIdAndUpdate(id, customer);
+        return CustomerModel.findOneAndUpdate({ id }, customer);
     }
 
     public static async delete(id: string): Promise<Customer> {
-        return CustomerModel.findByIdAndDelete({ id });
+        return CustomerModel.findOneAndDelete({ id });
     }
 }

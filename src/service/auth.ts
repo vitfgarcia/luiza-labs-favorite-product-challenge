@@ -8,7 +8,7 @@ import { LoginResponse } from '../interfaces';
 
 import { Message } from '../helper';
 
-export class LoginService {
+export class AuthService {
     private static expiresIn = 3600000;
 
     public static async login(user: User): Promise<LoginResponse> {
@@ -19,23 +19,23 @@ export class LoginService {
         }
 
 
-        const accessToken = LoginService.generateToken(foundUser, LoginService.expiresIn);
+        const accessToken = AuthService.generateToken(foundUser, AuthService.expiresIn);
 
         return {
             username: user.username,
             accessToken,
-            expiresIn: LoginService.expiresIn,
+            expiresIn: AuthService.expiresIn,
         };
     }
 
     public static async refreshToken(token: string): Promise<LoginResponse> {
-        const user = await LoginService.decodeToken(token);
-        const newAccessToken = LoginService.generateToken(user, LoginService.expiresIn);
+        const user = await AuthService.decodeToken(token);
+        const newAccessToken = AuthService.generateToken(user, AuthService.expiresIn);
 
         return {
             username: user.username,
             accessToken: newAccessToken,
-            expiresIn: LoginService.expiresIn,
+            expiresIn: AuthService.expiresIn,
         };
     }
 

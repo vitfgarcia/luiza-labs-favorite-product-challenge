@@ -1,6 +1,6 @@
 import 'source-map-support/register';
 import './configuration/connection';
-
+import './configuration/axios';
 
 import { server } from './helper';
 import { customerRouter, authRouter } from './controller';

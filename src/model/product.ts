@@ -22,4 +22,4 @@ const definition: SchemaDefinition = {
     },
 };
 
-export const ProductSchema = new Schema(definition);
+export const ProductSchema = new Schema(definition, { _id: false });

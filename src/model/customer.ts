@@ -5,10 +5,9 @@ import { ProductSchema } from '.';
 import { Customer } from '../entity';
 
 const definition: SchemaDefinition = {
-    id: {
+    _id: {
         type: String,
         default: uuid,
-        unique: true,
     },
     name: {
         type: String,
@@ -21,8 +20,9 @@ const definition: SchemaDefinition = {
     },
     favoriteProducts: {
         type: [ProductSchema],
+        default: [],
     },
 };
 
-export const CustomerSchema = new Schema(definition);
+export const CustomerSchema = new Schema(definition, { versionKey: false });
 export const CustomerModel = model<Customer>('Customer', CustomerSchema);

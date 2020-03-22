@@ -6,7 +6,6 @@ const definition: SchemaDefinition = {
     id: {
         type: String,
         default: uuid,
-        unique: true,
     },
     username: {
         type: String,
@@ -19,5 +18,5 @@ const definition: SchemaDefinition = {
     },
 };
 
-export const UserSchema = new Schema<User>(definition);
+export const UserSchema = new Schema<User>(definition, { versionKey: false });
 export const UserModel = model<User>('User', UserSchema);
