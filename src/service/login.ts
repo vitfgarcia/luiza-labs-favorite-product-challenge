@@ -15,7 +15,7 @@ export class LoginService {
         const foundUser = await UserRepository.findOne(user);
 
         if (!foundUser) {
-            throw new Message('Usuário não encontrado').withStatus(404);
+            throw new Message('Usuário e/ou senha incorretos').withStatus(400);
         }
 
 
@@ -41,17 +41,20 @@ export class LoginService {
 
 
     public static async decodeToken(token: string): Promise<User> {
-        if (!token) {
+        const isTokenValid = token && token.startsWith('Bearer ');
+
+        if (!isTokenValid) {
             throw new Message('Unauthorized').withStatus(401);
         }
-
-        const payload: Partial<User> = jwt.verify(token, secret);
+        const cleanToken = token.substring(7, token.length);
+        const payload: Partial<User> = jwt.verify(cleanToken, secret);
 
         if (!payload) {
             throw new Message('Unauthorized').withStatus(401);
         }
 
-        const user = await UserRepository.findOne(payload);
+        const { id } = payload;
+        const user = await UserRepository.findOne({ id });
 
         if (!user) {
             throw new Message('Unauthorized').withStatus(401);
