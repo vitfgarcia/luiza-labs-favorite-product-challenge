@@ -3,7 +3,7 @@ import { Message } from '../helper';
 import { CustomRequest } from '../interfaces';
 
 export function notFound(_: Request, res: Response): Response {
-    return res.status(404).json('Nenhum rota encontrada');
+    return res.status(404).json('Nenhuma rota encontrada');
 }
 
 export const errorHandler = (err: Message | Error, req: CustomRequest, res: Response): Response => {
