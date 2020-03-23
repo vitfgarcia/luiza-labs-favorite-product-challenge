@@ -1,9 +1,9 @@
 FROM node:12.16.1-alpine
 
-WORKDIR /src
+WORKDIR /app
 
-ADD package.json /src/
-ADD . /src
+ADD package.json .
+ADD . .
 
 RUN npm i
 RUN npm run build 
