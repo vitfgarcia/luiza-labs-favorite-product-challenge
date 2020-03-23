@@ -17,7 +17,7 @@ module.exports = (config) => {
         coverageAnalysis: 'off',
         tsconfigFile: 'tsconfig.json',
         mutate: [
-            'src/service/customer-baseline.ts',
+            'src/service/*.ts',
         ],
         files: [
             'src/**/*.ts',
@@ -25,5 +25,6 @@ module.exports = (config) => {
             'jest.config.js',
             '.env',
         ],
+        maxConcurrentTestRunners: 3,
     });
 };
