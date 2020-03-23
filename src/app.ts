@@ -1,13 +1,16 @@
 import 'source-map-support/register';
 import './configuration/connection';
+import './configuration/axios';
 
 import { server } from './helper';
-import { customerRouter, favoriteProductRouter, loginRouter } from './controller';
+import { customerRouter, authRouter } from './controller';
 
 server({
     port: 3000,
     publicRoutes: [
+        { path: '/', module: authRouter },
     ],
     privateRoutes: [
+        { path: '/', module: customerRouter },
     ],
 });

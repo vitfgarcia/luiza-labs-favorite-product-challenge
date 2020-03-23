@@ -33,6 +33,7 @@
         "max-len": [
             "warn",
             150
-        ]
+        ],
+        "no-console": "off"
     }
 }
