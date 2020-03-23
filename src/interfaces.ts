@@ -2,6 +2,7 @@ import {
     Router,
     Request,
 } from 'express';
+import { User } from './entity';
 import { Message } from './helper';
 
 export interface ServerConfig {
@@ -15,6 +16,13 @@ export interface RouteConfig {
     module: Router;
 }
 
+export interface LoginResponse {
+    username: string;
+    accessToken: string;
+    expiresIn: number;
+}
+
 export interface CustomRequest extends Request {
+    user?: User;
     err?: Error | Message;
 }
