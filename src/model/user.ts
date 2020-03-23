@@ -1,5 +1,5 @@
 import { Schema, SchemaDefinition, model } from 'mongoose';
-import * as uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { User } from '../entity';
 
 const definition: SchemaDefinition = {

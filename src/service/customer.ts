@@ -1,7 +1,7 @@
 import { Customer } from '../entity';
 import { CustomerRepository } from '../repository';
 import { Message } from '../helper';
-import { ProductService } from './product';
+import { ProductService } from '.';
 
 export class CustomerService {
     public static async getAll(): Promise<Customer[]> {
@@ -33,20 +33,23 @@ export class CustomerService {
     }
 
     public static async update(id: string, customer: Customer): Promise<Customer> {
-        try {
-            const updated = await CustomerRepository.update(id, customer);
-            return await CustomerRepository.getById(updated.id);
-        } catch (err) {
+        const updated = await CustomerRepository.update(id, customer);
+
+        if (!updated) {
             throw new Message('Usuário não encontrado').withStatus(404);
         }
+
+        return CustomerRepository.getById(updated.id);
     }
 
     public static async delete(id: string): Promise<Customer> {
-        try {
-            return await CustomerRepository.delete(id);
-        } catch (err) {
+        const deleted = await CustomerRepository.delete(id);
+
+        if (!deleted) {
             throw new Message('Usuário não encontrado').withStatus(404);
         }
+
+        return deleted;
     }
 
     public static async addFavoriteProduct(id: string, productId: string): Promise<Customer> {

@@ -44,7 +44,7 @@ export class AuthService {
         const isTokenValid = token && token.startsWith('Bearer ');
 
         if (!isTokenValid) {
-            throw new Message('Invalid Token').withStatus(400);
+            throw new Message('Token inválido').withStatus(400);
         }
         const cleanToken = token.substring(7, token.length);
 
