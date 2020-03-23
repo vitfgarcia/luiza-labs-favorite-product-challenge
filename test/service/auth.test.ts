@@ -6,7 +6,6 @@ import { User } from '../../src/entity';
 import { UserRepository } from '../../src/repository';
 import { Message } from '../../src/helper';
 import { LoginResponse } from '../../src/interfaces';
-import { secret } from '../../src/configuration/jwt';
 
 describe('User service tests', () => {
     describe('login', () => {
