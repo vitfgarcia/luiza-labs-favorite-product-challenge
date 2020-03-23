@@ -1,16 +1,11 @@
 FROM node:12.16.1-alpine
 
-WORKDIR /src
+WORKDIR /app
 
-ADD package.json /src/
+ADD package.json .
+ADD . .
 
-RUN set -x \
-    && apk update \
-    && npm i
-
-ADD . /src
-
-RUN npm run build \
-    && npm i --production
+RUN npm i
+RUN npm run build 
 
 CMD npm start

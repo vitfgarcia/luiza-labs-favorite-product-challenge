@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    environment:
+      ENVINRONMENT: production
+      MONGO_CONNECTION: mongodb://mongo:27017/FavoriteProductChallenge
+      JWT_SECRET: worldisfullofdevelopers
+      PRODUCT_API_URL: http://challenge-api.luizalabs.com/api/product
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks: 
+    app-network:
+      driver: bridge

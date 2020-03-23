@@ -1,5 +1,5 @@
 import { Schema, SchemaDefinition, model } from 'mongoose';
-import * as uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
 import { ProductSchema } from '.';
 import { Customer } from '../entity';
@@ -20,8 +20,9 @@ const definition: SchemaDefinition = {
     },
     favoriteProducts: {
         type: [ProductSchema],
+        default: [],
     },
 };
 
-export const CustomerSchema = new Schema(definition);
+export const CustomerSchema = new Schema(definition, { versionKey: false });
 export const CustomerModel = model<Customer>('Customer', CustomerSchema);
