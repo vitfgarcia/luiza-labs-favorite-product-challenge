@@ -12,7 +12,7 @@ export class CustomerService {
         const customer = await CustomerRepository.getById(id);
 
         if (!customer) {
-            throw new Message('Usuário não encontrado').withStatus(404);
+            throw new Message('Cliente não encontrado').withStatus(404);
         }
 
         return customer;
@@ -36,7 +36,7 @@ export class CustomerService {
         const updated = await CustomerRepository.update(id, customer);
 
         if (!updated) {
-            throw new Message('Usuário não encontrado').withStatus(404);
+            throw new Message('Cliente não encontrado').withStatus(404);
         }
 
         return CustomerRepository.getById(updated.id);
@@ -46,7 +46,7 @@ export class CustomerService {
         const deleted = await CustomerRepository.delete(id);
 
         if (!deleted) {
-            throw new Message('Usuário não encontrado').withStatus(404);
+            throw new Message('Cliente não encontrado').withStatus(404);
         }
 
         return deleted;
