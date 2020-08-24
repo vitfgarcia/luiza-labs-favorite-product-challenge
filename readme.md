@@ -31,7 +31,7 @@ npm run test:mutation
     ```
 1. Run project
     ```
-    npm run devv
+    npm run dev
     ```
 
 # Run with docker
